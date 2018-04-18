@@ -16,8 +16,6 @@ const userSchema = new Schema({
     updated_at: Date
 });
 
-const User = mongoose.model('User', userSchema);
-
 //pre-save method
 userSchema.methods.manify = function(next) {
     this.name = this.name + '-boy';
@@ -39,4 +37,23 @@ userSchema.pre('save', function(next) {
     // next() jest funkcją która przechodzi do następnego hooka do
     // wykonania przed lub po requeście
     next();
+});
+
+const User = mongoose.model('User', userSchema);
+
+const kenny = new User({
+    name: 'Kenny',
+    username: 'Kenny_the_boy',
+    password: 'password'
+});
+
+kenny.manify(function(err, name) {
+    if (err) throw err;
+    console.log('Twoje nowe imię to: ' + name);
+});
+
+kenny.save(function(err) {
+    if (err) throw err;
+
+    console.log('Uzytkownik zapisany pomyslnie');
 });
