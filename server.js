@@ -11,3 +11,11 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     admin: Boolean
 });
+
+const User = mongoose.model('User', userSchema);
+
+userSchema.methods.manify = function(next) {
+    this.name = this.name + '-boy';
+
+    return next(null, this.name);
+};
