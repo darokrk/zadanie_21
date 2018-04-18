@@ -16,13 +16,13 @@ const userSchema = new Schema({
     updated_at: Date
 });
 
-//pre-save method
+//Mongoose schema method
 userSchema.methods.manify = function(next) {
     this.name = this.name + '-boy';
 
     return next(null, this.name);
 };
-
+//pre-save method
 userSchema.pre('save', function(next) {
     //pobranie aktualnego czasu
     const currentDate = new Date();
@@ -39,8 +39,10 @@ userSchema.pre('save', function(next) {
     next();
 });
 
+//model based on userSchema
 const User = mongoose.model('User', userSchema);
 
+//instacje klasy User
 const kenny = new User({
     name: 'Kenny',
     username: 'Kenny_the_boy',
@@ -91,3 +93,10 @@ mark.save(function(err) {
 
     console.log('Uzytkownik ' + mark.name + ' zapisany pomyslnie');
 });
+
+//find specific record
+User.find({ username: 'Kenny_the_boy' }, function(err, res) {
+    if (err) throw err;
+    console.log('Record you are looking for is ' + res);
+});
+
