@@ -44,8 +44,8 @@ const User = mongoose.model('User', userSchema);
 
 //instacje klasy User
 const kenny = new User({
-    name: 'Kenny',
-    username: 'Kenny_the_boy',
+    name: 'Menny',
+    username: 'Menny_the_boy',
     password: 'password'
 });
 
@@ -55,8 +55,8 @@ kenny.manify(function(err, name) {
 });
 
 const benny = new User({
-    name: 'Benny',
-    username: 'Benny_the_boy',
+    name: 'Fenny',
+    username: 'Fenny_the_boy',
     password: 'password'
 });
 
@@ -66,8 +66,8 @@ benny.manify(function(err, name) {
 });
 
 const mark = new User({
-    name: 'Mark',
-    username: 'Mark_the_boy',
+    name: 'Cark',
+    username: 'Cark_the_boy',
     password: 'password'
 });
 
@@ -94,7 +94,7 @@ const findSpecificRecord = function() {
 
 const updadeUserPassword = function() {
     // update user password
-    return User.findOne({ username: 'Kenny_the_boy' })
+    return User.findOne({ username: 'Menny_the_boy' })
         .then(function(user) {
             console.log('Old password is ' + user.password);
             console.log('Name ' + user.name);
@@ -110,7 +110,7 @@ const updadeUserPassword = function() {
 
 const updateUsername = function() {
     // update username
-    return User.findOneAndUpdate({ username: 'Benny_the_boy' }, { username: 'Benny_the_man' }, { new: true }, function(err, user) {
+    return User.findOneAndUpdate({ username: 'Fenny_the_boy' }, { username: 'Fenny_the_man' }, { new: true }, function(err, user) {
         if (err) throw err;
 
         console.log('Nazwa uzytkownika po aktualizacji to ' + user.username);
@@ -119,7 +119,7 @@ const updateUsername = function() {
 
 const findMarkAndDelete = function() {
     // find specific user and delete
-    return User.findOne({ username: 'Mark_the_boy' })
+    return User.findOne({ username: 'Cark_the_boy' })
         .then(function(user) {
             return user.remove(function() {
                 console.log('User successfully deleted');
@@ -129,7 +129,7 @@ const findMarkAndDelete = function() {
 
 const findKennyAndDelete = function() {
     // find specific user and delete
-    return User.findOne({ username: 'Kenny_the_boy' })
+    return User.findOne({ username: 'Menny_the_boy' })
         .then(function(user) {
             return user.remove(function() {
                 console.log('User successfully deleted');
@@ -139,7 +139,7 @@ const findKennyAndDelete = function() {
 
 const findBennyAndRemove = function() {
     // find specific user and delete
-    return User.findOneAndRemove({ username: 'Benny_the_man' })
+    return User.findOneAndRemove({ username: 'Fenny_the_man' })
         .then(function(user) {
             return user.remove(function() {
                 console.log('User successfully deleted');
